@@ -66,13 +66,13 @@
             box-sizing: border-box;
         }
 
-        /* --- GPU ACCELERATED BACKGROUND --- */
+        /* --- GPU ACCELERATED PARALLAX BACKGROUND --- */
         #fixed-bg {
             position: fixed; 
-            top: -10vh;
+            top: -20vh; /* Oversized to allow parallax translation without showing edges */
             left: -10vw;
             width: 120vw; 
-            height: 120vh;
+            height: 140vh;
             background-image: 
                 radial-gradient(circle at 50% 0%, #1a1a2e 0%, transparent 70%),
                 linear-gradient(0deg, rgba(0,0,0,0.2) 1px, transparent 1px),
@@ -84,55 +84,17 @@
             backface-visibility: hidden;
         }
 
-        /* --- CRT OVERLAY: High-Performance Oversize & Sub-Pixel Offset Method --- */
-        .crt-wrapper {
-            position: fixed;
-            inset: 0;
-            width: 100vw;
-            height: 100dvh;
-            pointer-events: none;
-            z-index: 9999;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
-            overflow: hidden; /* Contains the oversized translating scanlines */
-        }
-
-        .crt-overlay {
-            position: absolute; 
-            top: -300px; /* Severe oversize to completely prevent mobile scroll clipping */
-            left: -10vw;
-            width: 120vw; 
-            height: calc(100vh + 600px);
-            height: calc(100dvh + 600px);
-            /* Softened gradient to prevent Moiré aliasing jitter */
-            background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.1) 60%, rgba(18, 16, 16, 0) 100%);
-            background-size: 100% 4px;
-            pointer-events: none; 
-            /* Strict Hardware Acceleration translating over the Y-axis instead of background-position */
-            will-change: transform;
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            perspective: 1000;
-            animation: crtAnimation 10s linear infinite;
+        /* --- SCROLL ANIMATION STATES --- */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity, transform;
         }
         
-        @keyframes crtAnimation { 
-            0% { transform: translate3d(0, 0, 0); } 
-            /* 240px is a perfect LCM of 2px, 4px, and 6px, guaranteeing a seamless loop across all responsive media queries */
-            100% { transform: translate3d(0, 240px, 0); } 
-        }
-
-        /* Responsive Scanlines via CSS Media Queries */
-        @media screen and (max-width: 768px) {
-            .crt-overlay {
-                background-size: 100% 6px;
-                animation-duration: 15s;
-            }
-        }
-
-        @media screen and (min-width: 1920px), (-webkit-min-device-pixel-ratio: 1.5) {
-            .crt-overlay {
-                background-size: 100% 2px;
-            }
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- NAVIGATION --- */
@@ -624,7 +586,6 @@
 <body>
 
 <div id="fixed-bg"></div>
-<div class="crt-wrapper"><div class="crt-overlay"></div></div>
 <div id="loader"><div class="spinner"></div></div>
 <div id="nexus-toast-container" style="position:fixed; top:90px; right:20px; z-index:7000;"></div>
 
@@ -645,12 +606,12 @@
 
 <div id="app-content">
     
-    <div class="hero terminal-container">
+    <div class="hero terminal-container reveal-up">
         <h1>Research Terminal</h1>
         <p>Advanced Tactical Simulations & Physics Modules</p>
     </div>
 
-    <div class="ad-uplink-container terminal-container">
+    <div class="ad-uplink-container terminal-container reveal-up">
         <span class="ad-label">Sponsored Uplink Protocol // AD-NET</span>
         <ins class="adsbygoogle"
              style="display:block"
@@ -685,7 +646,7 @@
     
     <div id="pagination-controls" class="pagination-container terminal-container"></div>
 
-    <article class="documentation-section terminal-container" id="research-log">
+    <article class="documentation-section terminal-container reveal-up" id="research-log">
         <h2>Research Log: Simulation Parameters</h2>
         <p>
             Welcome to the Scientific Nexus Research Terminal (SNRT). This platform serves as a distributed digital laboratory designed to test cognitive reflexes, strategic planning capabilities, and physics comprehension through high-fidelity HTML5 simulation modules. Unlike standard entertainment repositories, the Nexus aggregates specific "simulation vectors" categorized into Kinetic Action, Structural Physics, and Cognitive Strategy.
@@ -695,7 +656,7 @@
         </div>
     </article>
 
-    <footer class="site-footer">
+    <footer class="site-footer reveal-up">
         <div class="footer-content">
             <div class="footer-col">
                 <h4>Scientific Nexus</h4>
@@ -878,25 +839,6 @@
         serverTimestamp, writeBatch, collectionGroup, setDoc, getDoc, arrayUnion, arrayRemove, increment,
         enableIndexedDbPersistence 
     } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    // --- DEVICE DETECTION & DYNAMIC SCANLINE DENSITY ---
-    document.addEventListener("DOMContentLoaded", () => {
-        const crtOverlay = document.querySelector('.crt-overlay');
-        const isMobile = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-        const isHighRes = window.devicePixelRatio > 1.5 || window.innerWidth > 1920;
-
-        // Note: CSS Media Queries now handle primary scaling, but we keep this JS logic as an 
-        // additional progressive enhancement for specific touch devices and ultra-wide setups.
-        if (isMobile) {
-            document.body.classList.add('touch-device');
-            crtOverlay.style.backgroundSize = '100% 6px';
-            crtOverlay.style.animationDuration = '15s';
-            console.log("Scientific Nexus: Mobile touch device detected. Applying thick scanlines for performance stability.");
-        } else if (isHighRes) {
-            crtOverlay.style.backgroundSize = '100% 2px';
-            console.log("Scientific Nexus: High-Resolution display detected. Applying fine scanlines.");
-        }
-    });
 
     // --- PWA INSTALLATION LOGIC ---
     let deferredPrompt;
@@ -1482,6 +1424,39 @@
     document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => document.getElementById('loader').classList.add('hidden'), 800);
         render();
+
+        // --- INTERSECTION OBSERVER FOR REVEAL ANIMATIONS ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // One-time animation trigger
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
+
+        // --- HIGH-PERFORMANCE PARALLAX SCROLL LOGIC ---
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const bg = document.getElementById('fixed-bg');
+                    if (bg) {
+                        // Subtle 3D translation parallax linked to scroll depth
+                        bg.style.transform = `translate3d(0, ${window.scrollY * 0.15}px, 0)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
 
         // --- SERVICE WORKER REGISTRATION ---
         if ('serviceWorker' in navigator) {
