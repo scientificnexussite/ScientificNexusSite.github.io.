@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#050507">
+    <title>About Scientific Nexus | Free Browser Gaming Platform</title>
+    <meta name="description" content="Scientific Nexus is a free browser gaming platform built by an independent developer in Pakistan. Learn about the platform, its features, and the story behind it.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6504872858297214" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --cyan:#00f2ff; --cyan-glow:rgba(0,242,255,0.4); --cyan-dim:rgba(0,242,255,0.1);
+            --purple:#bc13fe; --dark:#050507; --panel-bg:rgba(15,15,20,0.92);
+            --glass-border:rgba(255,255,255,0.08); --success:#00ff88;
+            --font-main:'Rajdhani',sans-serif; --font-mono:'Share Tech Mono',monospace;
+        }
+        *{box-sizing:border-box;}
+        body{background-color:var(--dark);color:#e0e0e0;font-family:var(--font-main);margin:0;padding:0;line-height:1.7;overflow-x:hidden;}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:15px 5%;background:rgba(5,5,7,0.97);border-bottom:1px solid var(--glass-border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(15px);}
+        .logo{font-family:var(--font-mono);color:var(--cyan);font-size:clamp(1rem,2.5vw,1.4rem);text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;text-shadow:0 0 15px var(--cyan-glow);}
+        .back-btn{background:transparent;border:1px solid var(--cyan);color:var(--cyan);padding:8px 15px;text-decoration:none;font-family:var(--font-mono);font-size:0.85rem;transition:0.3s;border-radius:4px;letter-spacing:1px;}
+        .back-btn:hover{background:var(--cyan-dim);box-shadow:0 0 15px var(--cyan-dim);}
+
+        .page-wrap{max-width:960px;margin:0 auto;padding:50px 20px 80px;}
+
+        /* Hero */
+        .about-hero{text-align:center;padding:20px 0 50px;border-bottom:1px solid var(--glass-border);margin-bottom:50px;}
+        .about-hero .site-badge{display:inline-flex;align-items:center;gap:12px;background:rgba(0,242,255,0.06);border:1px solid var(--cyan-dim);border-radius:50px;padding:10px 24px;margin-bottom:30px;}
+        .about-hero .site-badge i{color:var(--cyan);font-size:1.2rem;}
+        .about-hero .site-badge span{font-family:var(--font-mono);color:var(--cyan);letter-spacing:2px;text-transform:uppercase;font-size:0.85rem;}
+        .about-hero h1{font-family:var(--font-mono);font-size:clamp(1.8rem,5vw,3rem);color:white;text-transform:uppercase;letter-spacing:3px;margin:0 0 15px;}
+        .about-hero .tagline{font-family:var(--font-mono);color:#777;font-size:clamp(0.85rem,2vw,1rem);letter-spacing:2px;text-transform:uppercase;margin-bottom:25px;}
+        .about-hero .summary{max-width:700px;margin:0 auto;color:#aaa;font-size:clamp(0.95rem,2vw,1.1rem);line-height:1.8;}
+
+        /* Stat strip */
+        .stat-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:15px;margin:40px 0;}
+        .stat-box{background:var(--panel-bg);border:1px solid var(--glass-border);border-radius:6px;padding:20px;text-align:center;}
+        .stat-box .num{font-family:var(--font-mono);font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--cyan);display:block;font-weight:700;}
+        .stat-box .lbl{font-size:0.8rem;color:#666;text-transform:uppercase;letter-spacing:1px;margin-top:4px;display:block;}
+
+        /* Sections */
+        h2{font-family:var(--font-mono);color:var(--cyan);text-transform:uppercase;letter-spacing:2px;font-size:clamp(1.2rem,3vw,1.6rem);margin:50px 0 18px;border-bottom:1px solid var(--cyan-dim);padding-bottom:10px;}
+        p{color:#aaa;font-size:clamp(0.95rem,2vw,1.05rem);margin:0 0 18px;}
+        a.inline-link{color:var(--cyan);text-decoration:none;}
+        a.inline-link:hover{text-decoration:underline;}
+
+        /* Story timeline */
+        .timeline{position:relative;padding-left:30px;margin:10px 0 30px;}
+        .timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:var(--cyan-dim);}
+        .tl-item{position:relative;margin-bottom:30px;}
+        .tl-item::before{content:'';position:absolute;left:-27px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan-glow);}
+        .tl-item .tl-date{font-family:var(--font-mono);font-size:0.75rem;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+        .tl-item h4{font-family:var(--font-mono);color:white;margin:0 0 6px;font-size:1rem;}
+        .tl-item p{margin:0;font-size:0.95rem;color:#888;}
+
+        /* Tech stack */
+        .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px;margin:20px 0;}
+        .tech-item{background:var(--panel-bg);border:1px solid var(--glass-border);border-radius:6px;padding:16px;display:flex;align-items:center;gap:14px;}
+        .tech-item i{font-size:1.4rem;color:var(--cyan);min-width:24px;text-align:center;}
+        .tech-item .tech-info strong{display:block;color:#ddd;font-size:0.95rem;margin-bottom:2px;}
+        .tech-item .tech-info span{color:#666;font-size:0.8rem;font-family:var(--font-mono);}
+
+        /* Values */
+        .values-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin:20px 0;}
+        .value-card{background:var(--panel-bg);border:1px solid var(--glass-border);border-radius:6px;padding:22px;border-top:3px solid var(--cyan);}
+        .value-card i{font-size:1.5rem;color:var(--cyan);margin-bottom:12px;display:block;}
+        .value-card h4{font-family:var(--font-mono);color:white;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px;font-size:0.95rem;}
+        .value-card p{color:#888;font-size:0.9rem;margin:0;line-height:1.6;}
+
+        /* Contact */
+        .contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:15px;margin:20px 0;}
+        .contact-card{background:var(--panel-bg);border:1px solid var(--glass-border);border-radius:6px;padding:20px;display:flex;align-items:center;gap:15px;text-decoration:none;transition:border-color 0.3s;}
+        .contact-card:hover{border-color:var(--cyan);}
+        .contact-card i{font-size:1.5rem;color:var(--cyan);min-width:28px;text-align:center;}
+        .contact-card .contact-info strong{display:block;color:white;margin-bottom:3px;font-size:0.95rem;}
+        .contact-card .contact-info span{color:#666;font-size:0.8rem;font-family:var(--font-mono);}
+
+        /* Footer */
+        .page-footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--glass-border);text-align:center;font-family:var(--font-mono);font-size:0.8rem;color:#555;}
+        .page-footer a{color:var(--cyan);text-decoration:none;}
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo"><i class="fas fa-atom"></i> SCIENTIFIC NEXUS</a>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Games</a>
+</nav>
+
+<div class="page-wrap">
+
+    <!-- HERO -->
+    <div class="about-hero">
+        <div class="site-badge">
+            <i class="fas fa-atom"></i>
+            <span>Independent Platform · Est. 2024</span>
+        </div>
+        <h1>About Scientific Nexus</h1>
+        <p class="tagline">Free Browser Gaming · Built in Pakistan</p>
+        <p class="summary">
+            Scientific Nexus is a free, browser-based gaming platform built by one independent developer. There are no corporations behind it, no investors, and no team of dozens. Just a solo project with a simple goal: give everyone instant access to good games without barriers.
+        </p>
+    </div>
+
+    <!-- STATS -->
+    <div class="stat-strip">
+        <div class="stat-box"><span class="num">100+</span><span class="lbl">Free Games</span></div>
+        <div class="stat-box"><span class="num">17</span><span class="lbl">Categories</span></div>
+        <div class="stat-box"><span class="num">0</span><span class="lbl">Downloads Needed</span></div>
+        <div class="stat-box"><span class="num">1</span><span class="lbl">Developer</span></div>
+    </div>
+
+
+    <!-- WHAT IS IT -->
+    <h2><i class="fas fa-info-circle" style="margin-right:10px;"></i>What Is Scientific Nexus?</h2>
+    <p>Scientific Nexus is a free HTML5 gaming platform where anyone can play browser games instantly — no account needed, no app to install, no cost. The library covers 17 genres including logic puzzles, racing, combat, arcade, idle, rhythm, educational, physics-based games, multiplayer, and more.</p>
+    <p>Beyond the game library, the platform has a built-in community layer. Signed-in users can chat with other players in real time through the Social Hub, build a friends list, exchange messages, and post public reviews in the Global Feedback Hub. Everything runs on Firebase, so it is available on any device with a modern browser.</p>
+    <p>The platform is also a Progressive Web App (PWA), which means you can add it to your home screen from any browser and use it like a native app — with offline support for previously visited pages built in via the service worker.</p>
+
+
+    <!-- THE STORY -->
+    <h2><i class="fas fa-clock" style="margin-right:10px;"></i>The Story So Far</h2>
+    <p>Scientific Nexus started as a personal project and has grown steadily through continuous iteration. Here is a brief timeline of how the platform has developed.</p>
+
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-date">Early 2024</div>
+            <h4>Platform Founded</h4>
+            <p>Scientific Nexus launched as a simple game aggregator with a small library of HTML5 games hosted through GameDistribution. The core goal was straightforward: a free, fast, no-friction place to play browser games.</p>
+        </div>
+        <div class="tl-item">
+            <div class="tl-date">Mid 2024</div>
+            <h4>Firebase Integration & User Accounts</h4>
+            <p>Google Firebase authentication was added, enabling user accounts, profile management, and the beginning of the community layer. Users could now sign in and have a persistent identity on the platform.</p>
+        </div>
+        <div class="tl-item">
+            <div class="tl-date">Late 2024</div>
+            <h4>Social Hub & Community Features</h4>
+            <p>Real-time chat, the ally system, private messaging with PIN protection, and the Global Feedback Hub were all introduced. The platform evolved from a game directory into a proper community-driven gaming platform.</p>
+        </div>
+        <div class="tl-item">
+            <div class="tl-date">Early 2025</div>
+            <h4>PWA & Service Worker</h4>
+            <p>Scientific Nexus became a full Progressive Web App. Users can now install it to their home screen. A service worker caches key assets so core pages load even on a slow or intermittent connection.</p>
+        </div>
+        <div class="tl-item">
+            <div class="tl-date">2025 – Present</div>
+            <h4>Ongoing Growth</h4>
+            <p>The game library has grown to over 100 titles across 17 categories. The platform continues to be improved — better performance, refined UI, expanded community tools, and more games added regularly.</p>
+        </div>
+    </div>
+
+
+    <!-- TECHNOLOGY -->
+    <h2><i class="fas fa-microchip" style="margin-right:10px;"></i>What the Platform Is Built With</h2>
+    <p>Scientific Nexus is built entirely with web technologies — no frameworks, no backend server, no database servers to manage. Here is the actual tech stack.</p>
+
+    <div class="tech-grid">
+        <div class="tech-item">
+            <i class="fab fa-html5"></i>
+            <div class="tech-info"><strong>HTML5 &amp; CSS3</strong><span>Core structure &amp; styling</span></div>
+        </div>
+        <div class="tech-item">
+            <i class="fab fa-js-square"></i>
+            <div class="tech-info"><strong>Vanilla JavaScript</strong><span>All platform logic</span></div>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-fire"></i>
+            <div class="tech-info"><strong>Firebase Auth</strong><span>User sign-in &amp; accounts</span></div>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-database"></i>
+            <div class="tech-info"><strong>Cloud Firestore</strong><span>Profiles, chat, reviews</span></div>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-cloud"></i>
+            <div class="tech-info"><strong>Firebase Storage</strong><span>User avatars &amp; images</span></div>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-gamepad"></i>
+            <div class="tech-info"><strong>GameDistribution</strong><span>HTML5 game library</span></div>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-mobile-alt"></i>
+            <div class="tech-info"><strong>PWA / Service Worker</strong><span>Install &amp; offline support</span></div>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-server"></i>
+            <div class="tech-info"><strong>Vercel</strong><span>Hosting &amp; deployment</span></div>
+        </div>
+    </div>
+
+
+    <!-- VALUES / PRINCIPLES -->
+    <h2><i class="fas fa-heart" style="margin-right:10px;"></i>What This Platform Stands For</h2>
+
+    <div class="values-grid">
+        <div class="value-card">
+            <i class="fas fa-lock-open"></i>
+            <h4>Always Free</h4>
+            <p>Every game on the platform is free. No premium tiers, no paywalls, no in-app purchases. That will not change.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-download" style="text-decoration:line-through;color:#ff6666;"></i>
+            <h4>No Downloads</h4>
+            <p>Everything runs in the browser. No installs, no plugins, no app store detours. Open the site and play.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-users"></i>
+            <h4>Community First</h4>
+            <p>The Social Hub, ally system, and Feedback Hub exist because gaming is more fun when you're not alone.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-mobile-alt"></i>
+            <h4>Works Everywhere</h4>
+            <p>The platform is designed to work on any modern device — desktop, phone, or tablet — without compromise.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-eye"></i>
+            <h4>Honest &amp; Transparent</h4>
+            <p>This is an independent solo project, not a company. The platform is funded by advertising — nothing hidden.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-arrow-up"></i>
+            <h4>Constantly Improving</h4>
+            <p>Scientific Nexus is updated regularly. Features, performance, and the game library are all actively worked on.</p>
+        </div>
+    </div>
+
+
+    <!-- CONTACT -->
+    <h2><i class="fas fa-envelope" style="margin-right:10px;"></i>Get in Touch</h2>
+    <p>Have a question, want to report a bug, or just want to say something? Here are the best ways to reach the platform.</p>
+
+    <div class="contact-grid">
+        <a href="mailto:scientificnexussite@gmail.com" class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <div class="contact-info">
+                <strong>Email</strong>
+                <span>scientificnexussite@gmail.com</span>
+            </div>
+        </a>
+        <a href="https://discord.gg/DZFwUMxmY" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <i class="fab fa-discord"></i>
+            <div class="contact-info">
+                <strong>Discord</strong>
+                <span>Join the community server</span>
+            </div>
+        </a>
+        <a href="https://t.me/ScientificNexus" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <i class="fab fa-telegram"></i>
+            <div class="contact-info">
+                <strong>Telegram</strong>
+                <span>t.me/ScientificNexus</span>
+            </div>
+        </a>
+        <a href="Review.html" class="contact-card">
+            <i class="fas fa-satellite-dish"></i>
+            <div class="contact-info">
+                <strong>Feedback Hub</strong>
+                <span>Leave a public review</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="page-footer">
+        <a href="index.html">Home</a> &nbsp;|&nbsp;
+        <a href="Review.html">Feedback Hub</a> &nbsp;|&nbsp;
+        <a href="research.html">Platform Guide</a> &nbsp;|&nbsp;
+        <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="terms.html">Terms of Service</a>
+        <br><br>&copy; 2024–2026 Scientific Nexus. All Rights Reserved.
+    </div>
+
+</div>
+</body>
+</html>

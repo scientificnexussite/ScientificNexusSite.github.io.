@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#050507">
+    <title>Platform Information | Scientific Nexus</title>
+    <meta name="description" content="Full platform information for Scientific Nexus — game library breakdown, supported categories, platform policies, and technical details about how the site is built and run.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6504872858297214" crossorigin="anonymous"></script>
+    <style>
+        :root{
+            --cyan:#00f2ff; --cyan-glow:rgba(0,242,255,0.4); --cyan-dim:rgba(0,242,255,0.1);
+            --dark:#050507; --panel-bg:rgba(15,15,20,0.92); --glass-border:rgba(255,255,255,0.08);
+            --success:#00ff88; --danger:#ff4444; --gold:#ffd700;
+            --font-main:'Rajdhani',sans-serif; --font-mono:'Share Tech Mono',monospace;
+        }
+        *{box-sizing:border-box;}
+        body{background-color:var(--dark);color:#e0e0e0;font-family:var(--font-main);margin:0;padding:0;line-height:1.7;overflow-x:hidden;}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:15px 5%;background:rgba(5,5,7,0.97);border-bottom:1px solid var(--glass-border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(15px);}
+        .logo{font-family:var(--font-mono);color:var(--cyan);font-size:clamp(1rem,2.5vw,1.4rem);text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;text-shadow:0 0 15px var(--cyan-glow);}
+        .back-btn{background:transparent;border:1px solid var(--cyan);color:var(--cyan);padding:8px 15px;text-decoration:none;font-family:var(--font-mono);font-size:0.85rem;transition:0.3s;border-radius:4px;letter-spacing:1px;}
+        .back-btn:hover{background:var(--cyan-dim);box-shadow:0 0 15px var(--cyan-dim);}
+
+        .page-wrap{max-width:960px;margin:0 auto;padding:50px 20px 80px;}
+        .page-header{margin-bottom:40px;border-bottom:1px solid var(--glass-border);padding-bottom:25px;}
+        .page-header h1{font-family:var(--font-mono);color:white;font-size:clamp(1.6rem,4vw,2.6rem);text-transform:uppercase;letter-spacing:2px;margin:0 0 10px;}
+        .page-header .subtitle{font-family:var(--font-mono);font-size:0.8rem;color:#555;letter-spacing:2px;text-transform:uppercase;}
+        .page-header p{color:#aaa;font-size:clamp(0.95rem,2vw,1.05rem);margin:15px 0 0;max-width:750px;}
+
+        h2{font-family:var(--font-mono);color:var(--cyan);text-transform:uppercase;letter-spacing:2px;font-size:clamp(1.1rem,2.5vw,1.5rem);margin:50px 0 18px;border-bottom:1px solid var(--cyan-dim);padding-bottom:10px;}
+        p{color:#aaa;font-size:clamp(0.95rem,2vw,1.05rem);margin:0 0 16px;}
+        a.inline{color:var(--cyan);text-decoration:none;}
+        a.inline:hover{text-decoration:underline;}
+
+        /* Info table */
+        .info-table{width:100%;border-collapse:collapse;margin:15px 0 30px;font-size:0.95rem;}
+        .info-table th{font-family:var(--font-mono);background:rgba(0,242,255,0.07);color:var(--cyan);text-align:left;padding:11px 15px;border-bottom:1px solid var(--cyan-dim);text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;}
+        .info-table td{padding:11px 15px;border-bottom:1px solid var(--glass-border);color:#aaa;vertical-align:top;}
+        .info-table td strong{color:#ddd;}
+        .info-table tr:last-child td{border-bottom:none;}
+        .badge-on{color:var(--success);font-family:var(--font-mono);font-size:0.85rem;}
+        .badge-off{color:#ff6666;font-family:var(--font-mono);font-size:0.85rem;}
+        .badge-free{color:var(--gold);font-family:var(--font-mono);font-size:0.85rem;}
+
+        /* Category summary table */
+        .cat-table{width:100%;border-collapse:collapse;margin:15px 0;font-size:0.9rem;}
+        .cat-table th{font-family:var(--font-mono);background:rgba(0,242,255,0.07);color:var(--cyan);text-align:left;padding:10px 14px;border-bottom:1px solid var(--cyan-dim);text-transform:uppercase;letter-spacing:1px;font-size:0.78rem;}
+        .cat-table td{padding:10px 14px;border-bottom:1px solid var(--glass-border);color:#aaa;}
+        .cat-table tr:last-child td{border-bottom:none;}
+        .cat-table tr:hover td{background:rgba(255,255,255,0.02);}
+
+        /* Policy cards */
+        .policy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin:20px 0;}
+        .policy-card{background:var(--panel-bg);border:1px solid var(--glass-border);border-radius:6px;padding:20px;}
+        .policy-card i{font-size:1.3rem;color:var(--cyan);margin-bottom:10px;display:block;}
+        .policy-card h4{font-family:var(--font-mono);color:white;text-transform:uppercase;margin:0 0 8px;font-size:0.9rem;letter-spacing:1px;}
+        .policy-card p{color:#777;font-size:0.88rem;margin:0;line-height:1.6;}
+
+        /* Version history */
+        .version-list{list-style:none;padding:0;margin:0;}
+        .version-list li{display:flex;gap:20px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--glass-border);}
+        .version-list li:last-child{border-bottom:none;}
+        .version-list .v-num{font-family:var(--font-mono);color:var(--cyan);font-size:0.9rem;min-width:60px;padding-top:2px;}
+        .version-list .v-info strong{color:#ddd;display:block;margin-bottom:3px;font-size:0.95rem;}
+        .version-list .v-info span{color:#666;font-size:0.85rem;font-family:var(--font-mono);}
+        .version-list .v-info p{color:#888;font-size:0.88rem;margin:5px 0 0;}
+
+        .page-footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--glass-border);text-align:center;font-family:var(--font-mono);font-size:0.8rem;color:#555;}
+        .page-footer a{color:var(--cyan);text-decoration:none;}
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo"><i class="fas fa-atom"></i> SCIENTIFIC NEXUS</a>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Games</a>
+</nav>
+
+<div class="page-wrap">
+
+    <div class="page-header">
+        <div class="subtitle">Last Updated: April 2026</div>
+        <h1>Platform Information</h1>
+        <p>This page contains factual information about how Scientific Nexus is built, what it contains, how it handles data, and what policies govern its use. Everything here reflects the actual state of the platform.</p>
+    </div>
+
+
+    <!-- PLATFORM OVERVIEW -->
+    <h2><i class="fas fa-info-circle" style="margin-right:10px;"></i>1. Platform Overview</h2>
+
+    <table class="info-table">
+        <thead><tr><th>Property</th><th>Detail</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Platform Name</strong></td><td>Scientific Nexus</td></tr>
+            <tr><td><strong>Type</strong></td><td>Free browser-based HTML5 gaming platform with community features</td></tr>
+            <tr><td><strong>Primary URL</strong></td><td><a href="https://scientific-nexus-site.vercel.app" class="inline">scientific-nexus-site.vercel.app</a></td></tr>
+            <tr><td><strong>Founded</strong></td><td>2024</td></tr>
+            <tr><td><strong>Developer</strong></td><td>Independent solo developer, based in Pakistan</td></tr>
+            <tr><td><strong>Hosting</strong></td><td>Vercel (static hosting)</td></tr>
+            <tr><td><strong>Backend</strong></td><td>Google Firebase (Authentication, Firestore, Storage)</td></tr>
+            <tr><td><strong>Cost to use</strong></td><td><span class="badge-free">✦ FREE — always</span></td></tr>
+            <tr><td><strong>Account required to play</strong></td><td><span class="badge-off">✗ No — play as guest</span></td></tr>
+            <tr><td><strong>PWA / Installable</strong></td><td><span class="badge-on">✓ Yes</span></td></tr>
+            <tr><td><strong>Mobile compatible</strong></td><td><span class="badge-on">✓ Yes — fully responsive</span></td></tr>
+            <tr><td><strong>Monetisation</strong></td><td>Google AdSense display advertising</td></tr>
+        </tbody>
+    </table>
+
+
+    <!-- GAME LIBRARY -->
+    <h2><i class="fas fa-gamepad" style="margin-right:10px;"></i>2. Game Library</h2>
+    <p>The platform currently hosts over 100 HTML5 games sourced through GameDistribution. Games are embedded via iframe and load directly in the browser with no download required. The library is divided into 17 categories.</p>
+
+    <table class="cat-table">
+        <thead><tr><th>Category</th><th>Game Count</th><th>Example Titles</th></tr></thead>
+        <tbody>
+            <tr><td>Logic Puzzles</td><td>12</td><td>Wood Screw Puzzle, Tap it Away 3D, Wood Block Puzzle 3</td></tr>
+            <tr><td>Experimental</td><td>56</td><td>Airport Security, Polygon Space, Escape School</td></tr>
+            <tr><td>Combat</td><td>5</td><td>Zombie Survival, Bar Brawl, Beat The Zombies</td></tr>
+            <tr><td>Racing</td><td>5</td><td>Drift Boss, Police Traffic Racer, Vex X3M</td></tr>
+            <tr><td>Idle</td><td>4</td><td>Gas Station, Clean House, Penguin Farm</td></tr>
+            <tr><td>Merge Games</td><td>3</td><td>Cake Merge, Bridge Merge, Fusion 2048</td></tr>
+            <tr><td>Strategic War-rooms</td><td>2</td><td>Stick Master, Gear Wars</td></tr>
+            <tr><td>Arcade</td><td>2</td><td>Craft Of Wars, CUBE KING</td></tr>
+            <tr><td>Physics Sims</td><td>2</td><td>SkillFull Finger, Real Cargo Truck</td></tr>
+            <tr><td>Educational</td><td>2</td><td>Math vs Bat, Italian Animals</td></tr>
+            <tr><td>Tower Defense</td><td>1</td><td>Avenger Guard</td></tr>
+            <tr><td>Rhythm</td><td>1</td><td>Neon Dash</td></tr>
+            <tr><td>Retro</td><td>1</td><td>Coe Snake</td></tr>
+            <tr><td>Pool Games</td><td>1</td><td>Pool Merge</td></tr>
+            <tr><td>Card</td><td>1</td><td>Daily Solitaire</td></tr>
+            <tr><td>Multiplayer</td><td>1</td><td>Conquer io</td></tr>
+            <tr><td>2 Player</td><td>1</td><td>Football Duel</td></tr>
+        </tbody>
+    </table>
+
+
+    <!-- COMMUNITY FEATURES -->
+    <h2><i class="fas fa-users" style="margin-right:10px;"></i>3. Community Features</h2>
+    <p>Signed-in users (Google account required, free) have access to the following community features. These are all stored in Cloud Firestore.</p>
+
+    <table class="info-table">
+        <thead><tr><th>Feature</th><th>How It Works</th></tr></thead>
+        <tbody>
+            <tr><td><strong>User Profile</strong></td><td>Customisable username and avatar stored in Firestore. Visible to other users.</td></tr>
+            <tr><td><strong>Social Hub (Chat)</strong></td><td>Real-time global and private chat built on Firestore's real-time listener system.</td></tr>
+            <tr><td><strong>Ally System</strong></td><td>Add other users as allies (friends). Ally requests are stored per-user in Firestore.</td></tr>
+            <tr><td><strong>Private Messaging</strong></td><td>One-to-one private chat with optional 4-digit PIN lock for privacy.</td></tr>
+            <tr><td><strong>Global Feedback Hub</strong></td><td>Public review board. Any signed-in user can post a review, reply, like, or dislike entries.</td></tr>
+            <tr><td><strong>Blacklist</strong></td><td>Users can block specific other users from contacting them.</td></tr>
+        </tbody>
+    </table>
+
+
+    <!-- TECHNOLOGY -->
+    <h2><i class="fas fa-microchip" style="margin-right:10px;"></i>4. Technical Stack</h2>
+
+    <table class="info-table">
+        <thead><tr><th>Layer</th><th>Technology Used</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Frontend</strong></td><td>HTML5, CSS3, Vanilla JavaScript (ES6+)</td></tr>
+            <tr><td><strong>Authentication</strong></td><td>Firebase Authentication v10 — Google Sign-In provider</td></tr>
+            <tr><td><strong>Database</strong></td><td>Cloud Firestore — user profiles, chat, reviews, ally lists</td></tr>
+            <tr><td><strong>File Storage</strong></td><td>Firebase Storage — user-uploaded profile avatars</td></tr>
+            <tr><td><strong>Game Source</strong></td><td>GameDistribution — HTML5 game embeds via iframe</td></tr>
+            <tr><td><strong>Hosting</strong></td><td>Vercel — static site hosting with global CDN</td></tr>
+            <tr><td><strong>PWA</strong></td><td>Web App Manifest + Service Worker with stale-while-revalidate caching</td></tr>
+            <tr><td><strong>Advertising</strong></td><td>Google AdSense — display ads only, no tracking beyond standard ad cookies</td></tr>
+            <tr><td><strong>Fonts &amp; Icons</strong></td><td>Google Fonts (Rajdhani, Share Tech Mono), Font Awesome 6.4</td></tr>
+        </tbody>
+    </table>
+
+
+    <!-- PLATFORM POLICIES -->
+    <h2><i class="fas fa-shield-alt" style="margin-right:10px;"></i>5. Platform Policies at a Glance</h2>
+
+    <div class="policy-grid">
+        <div class="policy-card">
+            <i class="fas fa-user-shield"></i>
+            <h4>Data & Privacy</h4>
+            <p>Only email, username, and avatar are stored. No data is sold to third parties. Full details in the <a href="privacy.html" class="inline">Privacy Policy</a>.</p>
+        </div>
+        <div class="policy-card">
+            <i class="fas fa-child"></i>
+            <h4>Age Requirement</h4>
+            <p>The gaming platform is open to all ages. Users under 13 should have parental consent before creating an account, per COPPA guidelines.</p>
+        </div>
+        <div class="policy-card">
+            <i class="fas fa-ad"></i>
+            <h4>Advertising</h4>
+            <p>The platform uses Google AdSense to display advertisements. Ads are served by Google and may be personalised based on cookies. Users can opt out via Google's ad settings.</p>
+        </div>
+        <div class="policy-card">
+            <i class="fas fa-gavel"></i>
+            <h4>User Conduct</h4>
+            <p>Harassment, spam, or misuse of the community features will result in account suspension. Full terms in the <a href="terms.html" class="inline">Terms of Service</a>.</p>
+        </div>
+        <div class="policy-card">
+            <i class="fas fa-copyright"></i>
+            <h4>Game Licensing</h4>
+            <p>All games are sourced from GameDistribution under their standard publisher licensing terms. Scientific Nexus does not own the games themselves.</p>
+        </div>
+        <div class="policy-card">
+            <i class="fas fa-trash-alt"></i>
+            <h4>Account Deletion</h4>
+            <p>Users can request complete deletion of their account and associated data by emailing <a href="mailto:scientificnexussite@gmail.com" class="inline">scientificnexussite@gmail.com</a>.</p>
+        </div>
+    </div>
+
+
+    <!-- VERSION HISTORY -->
+    <h2><i class="fas fa-code-branch" style="margin-right:10px;"></i>6. Version History</h2>
+
+    <ul class="version-list">
+        <li>
+            <span class="v-num">v3.0</span>
+            <div class="v-info">
+                <strong>Current Version — Research Terminal 3.0</strong>
+                <span>2025 – Present</span>
+                <p>Full PWA with service worker. Social Hub with real-time chat and private messaging. PIN-locked private conversations. Ally system. Global Feedback Hub with likes, dislikes, and replies. Improved mobile layout.</p>
+            </div>
+        </li>
+        <li>
+            <span class="v-num">v2.0</span>
+            <div class="v-info">
+                <strong>Community Update</strong>
+                <span>Mid 2024</span>
+                <p>Firebase integration added. User accounts, profile customisation, avatar upload. Global chat introduced. Game library expanded across organised categories.</p>
+            </div>
+        </li>
+        <li>
+            <span class="v-num">v1.0</span>
+            <div class="v-info">
+                <strong>Initial Launch</strong>
+                <span>Early 2024</span>
+                <p>First public version. Game grid with search and category filter. Basic HTML5 game embeds via GameDistribution. No user accounts.</p>
+            </div>
+        </li>
+    </ul>
+
+
+    <!-- CONTACT -->
+    <h2><i class="fas fa-envelope" style="margin-right:10px;"></i>7. Contact</h2>
+    <p>For any questions, feedback, bug reports, or data requests, use one of the following contact methods.</p>
+
+    <table class="info-table">
+        <thead><tr><th>Channel</th><th>Details</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Email</strong></td><td><a href="mailto:scientificnexussite@gmail.com" class="inline">scientificnexussite@gmail.com</a> — main contact for all enquiries</td></tr>
+            <tr><td><strong>Discord</strong></td><td><a href="https://discord.gg/DZFwUMxmY" target="_blank" rel="noopener noreferrer" class="inline">discord.gg/DZFwUMxmY</a> — community server</td></tr>
+            <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/ScientificNexus" target="_blank" rel="noopener noreferrer" class="inline">t.me/ScientificNexus</a> — announcements channel</td></tr>
+            <tr><td><strong>Feedback Hub</strong></td><td><a href="Review.html" class="inline">Review.html</a> — public review board on this platform</td></tr>
+        </tbody>
+    </table>
+
+
+    <div class="page-footer">
+        <a href="index.html">Home</a> &nbsp;|&nbsp;
+        <a href="Review.html">Feedback Hub</a> &nbsp;|&nbsp;
+        <a href="about.html">About Us</a> &nbsp;|&nbsp;
+        <a href="research.html">Platform Guide</a> &nbsp;|&nbsp;
+        <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="terms.html">Terms of Service</a>
+        <br><br>&copy; 2024–2026 Scientific Nexus. All Rights Reserved.
+    </div>
+
+</div>
+</body>
+</html>

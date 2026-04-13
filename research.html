@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#050507">
+    <title>Platform Guide & Game Categories | Scientific Nexus</title>
+    <meta name="description" content="A complete guide to the Scientific Nexus gaming platform — explore all 17 game categories, learn how the platform works, and find out what makes each category unique.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6504872858297214" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --cyan:#00f2ff; --cyan-glow:rgba(0,242,255,0.4); --cyan-dim:rgba(0,242,255,0.1);
+            --dark:#050507; --panel-bg:rgba(15,15,20,0.92); --glass-border:rgba(255,255,255,0.08);
+            --font-main:'Rajdhani',sans-serif; --font-mono:'Share Tech Mono',monospace;
+        }
+        *{box-sizing:border-box;}
+        body{background-color:var(--dark);color:#e0e0e0;font-family:var(--font-main);margin:0;padding:0;line-height:1.7;overflow-x:hidden;}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:15px 5%;background:rgba(5,5,7,0.97);border-bottom:1px solid var(--glass-border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(15px);}
+        .logo{font-family:var(--font-mono);color:var(--cyan);font-size:clamp(1rem,2.5vw,1.4rem);text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;text-shadow:0 0 15px var(--cyan-glow);}
+        .back-btn{background:transparent;border:1px solid var(--cyan);color:var(--cyan);padding:8px 15px;text-decoration:none;font-family:var(--font-mono);font-size:0.85rem;transition:0.3s;border-radius:4px;letter-spacing:1px;}
+        .back-btn:hover{background:var(--cyan-dim);box-shadow:0 0 15px var(--cyan-dim);}
+        .page-wrap{max-width:960px;margin:0 auto;padding:50px 20px 80px;}
+        .article-header{margin-bottom:40px;border-bottom:1px solid var(--glass-border);padding-bottom:30px;}
+        .article-header h1{font-family:var(--font-mono);color:white;font-size:clamp(1.6rem,4vw,2.8rem);text-transform:uppercase;letter-spacing:2px;margin:0 0 12px;line-height:1.2;}
+        .article-meta{font-family:var(--font-mono);font-size:0.8rem;color:#666;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;}
+        .article-meta span{color:var(--cyan);margin-right:20px;}
+        .article-intro{font-size:clamp(1rem,2.5vw,1.15rem);color:#bbb;line-height:1.8;background:rgba(0,242,255,0.03);border-left:3px solid var(--cyan);padding:20px;border-radius:0 4px 4px 0;}
+        h2{font-family:var(--font-mono);color:var(--cyan);text-transform:uppercase;letter-spacing:2px;font-size:clamp(1.2rem,3vw,1.6rem);margin:50px 0 15px;border-bottom:1px solid var(--cyan-dim);padding-bottom:10px;}
+        h3{font-family:var(--font-mono);color:white;font-size:clamp(1rem,2vw,1.2rem);margin:30px 0 10px;}
+        p{color:#aaa;font-size:clamp(0.95rem,2vw,1.05rem);margin:0 0 18px;}
+        ul{color:#aaa;padding-left:20px;}
+        li{margin-bottom:8px;font-size:clamp(0.95rem,2vw,1.05rem);}
+        li strong{color:#ddd;}
+        .category-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;margin:25px 0;}
+        .cat-card{background:var(--panel-bg);border:1px solid var(--glass-border);border-radius:6px;padding:20px;transition:border-color 0.3s;}
+        .cat-card:hover{border-color:var(--cyan);}
+        .cat-card .cat-icon{font-size:1.8rem;color:var(--cyan);margin-bottom:10px;display:block;}
+        .cat-card h4{font-family:var(--font-mono);color:white;text-transform:uppercase;margin:0 0 8px;font-size:1rem;letter-spacing:1px;}
+        .cat-card p{color:#888;font-size:0.9rem;margin:0 0 10px;}
+        .cat-card .game-examples{font-family:var(--font-mono);font-size:0.75rem;color:var(--cyan);border-top:1px dashed #333;padding-top:8px;margin-top:8px;}
+        .steps-list{list-style:none;padding:0;counter-reset:steps;}
+        .steps-list li{counter-increment:steps;display:flex;gap:20px;align-items:flex-start;background:var(--panel-bg);border:1px solid var(--glass-border);border-radius:6px;padding:20px;margin-bottom:15px;}
+        .steps-list li::before{content:counter(steps);font-family:var(--font-mono);font-size:1.5rem;color:var(--cyan);font-weight:700;min-width:36px;text-align:center;}
+        .step-text strong{color:#ddd;display:block;margin-bottom:4px;font-size:1.05rem;}
+        .feature-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.95rem;}
+        .feature-table th{font-family:var(--font-mono);background:rgba(0,242,255,0.08);color:var(--cyan);text-align:left;padding:12px 15px;border-bottom:1px solid var(--cyan-dim);text-transform:uppercase;letter-spacing:1px;font-size:0.8rem;}
+        .feature-table td{padding:12px 15px;border-bottom:1px solid var(--glass-border);color:#aaa;vertical-align:top;}
+        .feature-table tr:last-child td{border-bottom:none;}
+        .faq-item{border:1px solid var(--glass-border);border-radius:6px;padding:20px;margin-bottom:15px;background:var(--panel-bg);}
+        .faq-item h4{font-family:var(--font-mono);color:var(--cyan);margin:0 0 10px;font-size:0.95rem;text-transform:uppercase;letter-spacing:1px;}
+        .faq-item p{margin:0;font-size:0.95rem;color:#aaa;}
+        .cta-banner{background:rgba(0,242,255,0.05);border:1px solid var(--cyan-dim);border-left:4px solid var(--cyan);border-radius:4px;padding:25px;text-align:center;margin-top:60px;}
+        .cta-banner h3{font-family:var(--font-mono);color:var(--cyan);text-transform:uppercase;margin:0 0 10px;}
+        .cta-banner p{color:#aaa;margin:0 0 20px;}
+        .cta-btn{display:inline-block;background:var(--cyan-dim);border:1px solid var(--cyan);color:var(--cyan);padding:12px 30px;text-decoration:none;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:2px;border-radius:4px;transition:0.3s;}
+        .cta-btn:hover{background:rgba(0,242,255,0.2);box-shadow:0 0 20px var(--cyan-dim);}
+        .page-footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--glass-border);text-align:center;font-family:var(--font-mono);font-size:0.8rem;color:#555;}
+        .page-footer a{color:var(--cyan);text-decoration:none;}
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo"><i class="fas fa-atom"></i> SCIENTIFIC NEXUS</a>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Games</a>
+</nav>
+
+<div class="page-wrap">
+
+    <div class="article-header">
+        <h1>Platform Guide &amp; Game Categories</h1>
+        <div class="article-meta">
+            <span><i class="fas fa-calendar-alt"></i> Last Updated: April 2026</span>
+            <span><i class="fas fa-user"></i> Scientific Nexus Team</span>
+        </div>
+        <p class="article-intro">
+            Scientific Nexus is a free browser gaming platform giving everyone instant access to 100+ HTML5 games — no downloads, no sign-ups required just to play, and no payment walls ever. This guide explains how the platform works, what each of the 17 game categories offers, and answers the most common questions we receive.
+        </p>
+    </div>
+
+
+    <h2><i class="fas fa-cogs" style="margin-right:10px;"></i>How the Platform Works</h2>
+    <p>Every game on Scientific Nexus runs natively in your web browser using HTML5 technology. There are no plugins to install, no app stores to navigate, and no files to download. Open the site, pick a game, and it loads instantly on any modern device.</p>
+
+    <ul class="steps-list">
+        <li>
+            <div class="step-text">
+                <strong>Browse the Game Library</strong>
+                Use the search bar or category filter buttons on the homepage to find something to play. Over 100 games are displayed in a grid organised across 17 categories. You can filter by genre, search by title, or just scroll and browse.
+            </div>
+        </li>
+        <li>
+            <div class="step-text">
+                <strong>Click Any Game to Play</strong>
+                Tap or click a game card to open it in the full-screen player. The game loads immediately in your browser — there are no redirects to third-party sites and no mandatory login required before you can start playing.
+            </div>
+        </li>
+        <li>
+            <div class="step-text">
+                <strong>Create a Free Account (Optional)</strong>
+                Sign in with your Google account to unlock community features: add games to your favourites, build an ally list, participate in real-time chat in the Social Hub, and post public reviews in the Feedback Hub.
+            </div>
+        </li>
+        <li>
+            <div class="step-text">
+                <strong>Leave a Review or Give Feedback</strong>
+                Head to the Global Feedback Hub to share your thoughts on the platform publicly. Reviews from real users help other visitors decide what to play and help us continue improving the site.
+            </div>
+        </li>
+    </ul>
+
+
+    <h2><i class="fas fa-list-check" style="margin-right:10px;"></i>Platform Features at a Glance</h2>
+    <table class="feature-table">
+        <thead>
+            <tr><th>Feature</th><th>Details</th><th>Account Needed?</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Play any game</td><td>All 100+ games are free and playable instantly</td><td>No — play as a guest</td></tr>
+            <tr><td>Search &amp; filter by category</td><td>17 genre categories plus a search bar</td><td>No</td></tr>
+            <tr><td>Social Hub (chat)</td><td>Real-time chat with other players</td><td>Yes (free Google sign-in)</td></tr>
+            <tr><td>Ally &amp; friend list</td><td>Add other users, send messages, see activity</td><td>Yes (free)</td></tr>
+            <tr><td>Leave public reviews</td><td>Post and read feedback via the Feedback Hub</td><td>Yes (free)</td></tr>
+            <tr><td>Install as an app (PWA)</td><td>Add to home screen via your browser</td><td>No</td></tr>
+            <tr><td>Mobile &amp; tablet support</td><td>Fully responsive layout, touch-compatible</td><td>No</td></tr>
+        </tbody>
+    </table>
+
+
+    <h2><i class="fas fa-gamepad" style="margin-right:10px;"></i>The 17 Game Categories Explained</h2>
+    <p>Here is a breakdown of every category on the platform, what you will find there, and what kind of player each one suits best.</p>
+
+    <div class="category-grid">
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-puzzle-piece"></i></span>
+            <h4>Logic Puzzles</h4>
+            <p>The largest category. Spatial, sequential, and pattern challenges. Good for players who enjoy thinking before they act.</p>
+            <div class="game-examples">Examples: Wood Screw Puzzle · Tap it Away 3D · Wood Block Puzzle 3</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-flask"></i></span>
+            <h4>Experimental</h4>
+            <p>Casual games, sandbox experiences, and unique titles that don't fit neatly into other genres. Always something different.</p>
+            <div class="game-examples">Examples: Airport Security · Polygon Space · Escape School</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-fist-raised"></i></span>
+            <h4>Combat</h4>
+            <p>Action-focused games involving fighting or survival. Fast reflexes required. Ideal for short, high-energy sessions.</p>
+            <div class="game-examples">Examples: Zombie Survival · Bar Brawl · Beat The Zombies</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-car"></i></span>
+            <h4>Racing</h4>
+            <p>Race on tracks, drift through corners, or navigate obstacle courses. Works on both keyboard and touch controls.</p>
+            <div class="game-examples">Examples: Drift Boss · Police Traffic Racer · Vex X3M</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-hourglass-half"></i></span>
+            <h4>Idle</h4>
+            <p>Games that grow even while you're away. Set up systems, come back to check progress, and keep expanding.</p>
+            <div class="game-examples">Examples: Gas Station · Clean House · Penguin Farm</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-object-group"></i></span>
+            <h4>Merge Games</h4>
+            <p>Combine matching items to create new ones. Relaxed and satisfying — easy to start, rewarding to finish.</p>
+            <div class="game-examples">Examples: Cake Merge · Bridge Merge · Fusion 2048</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-chess-rook"></i></span>
+            <h4>Strategic War-rooms</h4>
+            <p>Resource management and tactical decision-making. These games reward planning over raw reaction speed.</p>
+            <div class="game-examples">Examples: Stick Master · Gear Wars</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-bolt"></i></span>
+            <h4>Arcade</h4>
+            <p>Classic-style games with simple rules and progressively harder levels. Quick to learn, difficult to master.</p>
+            <div class="game-examples">Examples: Craft Of Wars · CUBE KING</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-atom"></i></span>
+            <h4>Physics Sims</h4>
+            <p>Games where the physics engine drives the gameplay. Trajectory, gravity, and collision are the core mechanics.</p>
+            <div class="game-examples">Examples: SkillFull Finger · Real Cargo Truck</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-graduation-cap"></i></span>
+            <h4>Educational</h4>
+            <p>Games designed to teach or reinforce knowledge across maths, language, and general learning. Suitable for all ages.</p>
+            <div class="game-examples">Examples: Math vs Bat · Italian Animals</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-shield-alt"></i></span>
+            <h4>Tower Defense</h4>
+            <p>Place defences strategically to stop waves of enemies. Requires forward thinking and smart resource use.</p>
+            <div class="game-examples">Examples: Avenger Guard</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-music"></i></span>
+            <h4>Rhythm</h4>
+            <p>Match your actions to the beat. Great for short sessions and naturally trains reaction timing.</p>
+            <div class="game-examples">Examples: Neon Dash</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-undo"></i></span>
+            <h4>Retro</h4>
+            <p>Classic formats reimagined for the browser. Familiar mechanics, modern browser performance.</p>
+            <div class="game-examples">Examples: Coe Snake</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-circle-dot"></i></span>
+            <h4>Pool Games</h4>
+            <p>Billiards-style titles with realistic ball physics. Precise aiming and angle reading are essential.</p>
+            <div class="game-examples">Examples: Pool Merge</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-layer-group"></i></span>
+            <h4>Card</h4>
+            <p>Card and board game classics including solitaire and strategy card titles. Perfect for relaxed solo sessions.</p>
+            <div class="game-examples">Examples: Daily Solitaire</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-users"></i></span>
+            <h4>Multiplayer</h4>
+            <p>Games designed for multiple players online simultaneously. Compete or co-operate with real players in real time.</p>
+            <div class="game-examples">Examples: Conquer io</div>
+        </div>
+        <div class="cat-card">
+            <span class="cat-icon"><i class="fas fa-user-friends"></i></span>
+            <h4>2 Player</h4>
+            <p>Two-player games on the same device. Play with a friend or family member — no internet connection between players needed.</p>
+            <div class="game-examples">Examples: Football Duel</div>
+        </div>
+    </div>
+
+
+    <h2><i class="fas fa-question-circle" style="margin-right:10px;"></i>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <h4>Is Scientific Nexus completely free?</h4>
+        <p>Yes. Every game on the platform is free to play. There are no paywalls, no premium tiers, and no in-platform purchases. The platform is funded by advertising.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Do I need to create an account to play?</h4>
+        <p>No. You can play any game as a guest with no sign-in required. An account (via Google) is only needed for community features like the Social Hub, the ally system, and leaving reviews.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Do the games work on mobile?</h4>
+        <p>Yes. The platform is fully responsive and all games work with touch controls on modern smartphones and tablets. The layout adjusts automatically to your screen size.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Why is the "Experimental" category so large?</h4>
+        <p>The Experimental category is a catch-all for games that are genuinely enjoyable but don't fit neatly into the other named genres. It is the most varied section of the library and worth browsing if you want to find something unusual.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Can I install Scientific Nexus on my device?</h4>
+        <p>Yes. The platform supports PWA (Progressive Web App) installation. Look for the Install button in the top navigation bar or use your browser's built-in "Add to Home Screen" option.</p>
+    </div>
+    <div class="faq-item">
+        <h4>How do I submit feedback or report a problem?</h4>
+        <p>Visit the <a href="Review.html" style="color:var(--cyan);">Global Feedback Hub</a> to leave a public review or report an issue. You can also email us directly at <a href="mailto:scientificnexussite@gmail.com" style="color:var(--cyan);">scientificnexussite@gmail.com</a>.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Who built this platform?</h4>
+        <p>Scientific Nexus was built by a solo independent developer based in Pakistan. It is not backed by a company. Read the full story on the <a href="about.html" style="color:var(--cyan);">About page</a>.</p>
+    </div>
+
+
+    <div class="cta-banner">
+        <h3><i class="fas fa-gamepad"></i> Ready to Play?</h3>
+        <p>Over 100 free games are waiting. No download, no account required to start.</p>
+        <a href="index.html" class="cta-btn"><i class="fas fa-arrow-left"></i> Browse All Games</a>
+    </div>
+
+    <div class="page-footer">
+        <a href="index.html">Home</a> &nbsp;|&nbsp;
+        <a href="Review.html">Feedback Hub</a> &nbsp;|&nbsp;
+        <a href="about.html">About Us</a> &nbsp;|&nbsp;
+        <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="terms.html">Terms of Service</a>
+        <br><br>&copy; 2024–2026 Scientific Nexus. All Rights Reserved.
+    </div>
+
+</div>
+</body>
+</html>
